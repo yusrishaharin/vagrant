@@ -23,6 +23,14 @@ module Vagrant
           comm.test("systemctl -q is-active systemd-networkd.service", sudo: true)
         end
 
+        # networking.service is in use
+        #
+        # @param [Vagrant::Plugin::V2::Communicator] comm Guest communicator
+        # @return [Boolean]
+        def systemd_networking?(comm)
+          comm.test("systemctl -q is-active networking.service", sudo: true)
+        end
+
         # Check if a unit file with the given name is defined. Name can
         # be a pattern or explicit name.
         #

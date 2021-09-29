@@ -57,6 +57,9 @@ module VagrantPlugins
               elsif systemd_controlled?(comm, "NetworkManager.service")
                 @logger.debug("Attempting to restart networking with NetworkManager")
                 restart_command = "systemctl restart NetworkManager.service"
+              elsif systemd_networking?(comm)
+                @logger.debug("Attempting to restart networking with networking.service")
+                restart_command = "systemctl restart networking.service"
               end
             end
 
